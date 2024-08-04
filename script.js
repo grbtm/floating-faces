@@ -78,4 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
     nose.addEventListener('click', () => {
         nose.src = nose.src.includes('nose.svg') ? 'static/nose_alternate.svg' : 'static/nose.svg';
     });
+
+    // Apply shake effect to all facial elements
+    const facialElements = [leftEye, rightEye, mouth, nose];
+    facialElements.forEach(element => {
+        element.classList.add('shake');
+    });
 });
