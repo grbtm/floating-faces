@@ -9,41 +9,81 @@ body {
 
 .face-container {
     position: relative;
-    width: 400px; /* Increased width */
-    height: 400px; /* Increased height */
+    width: 100%;
+    max-width: 400px; /* Set a maximum width */
+    height: 400px; /* Set a fixed height for the container */
+    transition: transform 2s ease-in-out;
+}
+
+.face-container.rotate-face {
+    animation: rotate-animation 1.5s ease-in-out;
+}
+
+@keyframes rotate-animation {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(-180deg); } /* Rotate 180 degrees counterclockwise */
+    100% { transform: rotate(0deg); } /* Back to original position */
 }
 
 .face-container img {
     position: absolute;
-    width: 80px; /* Increased width */
-    height: 80px; /* Increased height */
+    width: 20%; /* Make the images responsive */
+    height: auto; /* Adjust height automatically */
 }
 
 #left-eye {
-    top: 100px; /* Adjusted position */
-    left: 100px; /* Adjusted position */
+    top: 20%;
+    left: 25%;
 }
 
 #right-eye {
-    top: 100px; /* Adjusted position */
-    right: 100px; /* Adjusted position */
+    top: 20%;
+    right: 25%;
 }
 
 #nose {
-    top: 200px; /* Adjusted position */
-    left: 160px; /* Adjusted position */
-    width: 80px; /* Adjusted width */
-    height: 80px; /* Adjusted height */
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #mouth {
-    top: 300px; /* Adjusted position */
-    left: 120px; /* Adjusted position */
-    width: 160px; /* Increased width */
-    height: 80px; /* Increased height */
+    top: 70%;
+    left: 50%;
+    width: 40%;
+    height: auto;
+    transform: translateX(-50%);
 }
 
-/* Increase the stroke width of SVG lines */
-.face-container img {
-    stroke-width: 12px; /* Triple the default stroke width */
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .face-container {
+        max-width: 300px; /* Adjust max-width for smaller screens */
+        height: 300px; /* Adjust height for smaller screens */
+    }
+
+    .face-container img {
+        width: 30%; /* Adjust image size for smaller screens */
+    }
+
+    #left-eye, #right-eye {
+        top: 20%;
+    }
+
+    #left-eye {
+        left: 20%;
+    }
+
+    #right-eye {
+        right: 20%;
+    }
+
+    #nose {
+        top: 45%;
+    }
+
+    #mouth {
+        top: 70%;
+        width: 50%;
+    }
 }
