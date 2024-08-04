@@ -32,8 +32,8 @@ body {
 }
 
 #left-eye {
-    top: 40%; /* Move the eyes higher */
-    left: 35%; /* Increase the distance between the eyes */
+    top: 20%; /* Move the eyes higher */
+    left: 25%; /* Increase the distance between the eyes */
     transform: translateX(-50%);
     animation: shake 5s infinite;
     animation-delay: 0s; /* No delay */
@@ -42,8 +42,8 @@ body {
 }
 
 #right-eye {
-    top: 40%; /* Move the eyes higher */
-    left: 65%; /* Increase the distance between the eyes */
+    top: 20%; /* Move the eyes higher */
+    left: 75%; /* Increase the distance between the eyes */
     transform: translateX(-50%);
     animation: shake 5s infinite;
     animation-delay: 0.1s; /* Slight delay */
@@ -52,7 +52,7 @@ body {
 }
 
 #nose {
-    top: 55%;
+    top: 50%;
     left: 50%;
     transform: translateX(-50%);
     animation: shake 5s infinite;
