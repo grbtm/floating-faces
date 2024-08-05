@@ -4,11 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const mouth = document.getElementById('mouth');
     const nose = document.getElementById('nose');
     const facialElements = [leftEye, rightEye, mouth, nose];
-    const faceContainer = document.querySelector('.face-container');
 
     let leftEyeTimer;
     let rightEyeTimer;
-    let hasRotated = false; // Flag to track if rotation has already happened
 
     // Add drag and drop functionality to facial elements
     facialElements.forEach(element => {
@@ -60,41 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rightEyeTimer = setTimeout(() => {
             rightEye.src = 'static/closed_eye.svg';
         }, 15000); // Close right eye after 15 seconds
-    };
-
-    const checkFaceState = () => {
-        const isLeftEyeOpen = leftEye.src.includes('left_eye_open.svg');
-        const isRightEyeOpen = rightEye.src.includes('right_eye_open.svg');
-
-        if (isLeftEyeOpen && isRightEyeOpen && !hasRotated) {
-            hasRotated = true; // Set the flag to true after the first rotation
-            faceContainer.classList.add('rotate-face');
-            setTimeout(() => {
-                if (mouth.src.includes('smiling_mouth.svg')) {
-                    mouth.src = 'static/smiling_mouth_tongue_out.svg';
-                    setTimeout(() => {
-                        mouth.src = 'static/smiling_mouth.svg';
-                        // Delay before wink effect
-                        setTimeout(() => {
-                            rightEye.src = 'static/closed_eye.svg';
-                            setTimeout(() => {
-                                rightEye.src = 'static/right_eye_open.svg';
-                            }, 500); // Reopen right eye after 0.5 seconds
-                        }, 500); // Delay before starting wink effect
-                    }, 1000); // Change back to smiling mouth after 1 second
-                } else {
-                    // Case when rotation starts with tongue out
-                    setTimeout(() => {
-                        rightEye.src = 'static/closed_eye.svg';
-                        setTimeout(() => {
-                            rightEye.src = 'static/right_eye_open.svg';
-                        }, 500); // Reopen right eye after 0.5 seconds
-                    }, 300); // Delay before starting wink effect
-                }
-            }, 2000); // Change mouth after rotation animation (2 seconds)
-        } else {
-            faceContainer.classList.remove('rotate-face');
-        }
     };
 
     leftEye.addEventListener('click', () => {
