@@ -8,6 +8,9 @@ body {
 }
 
 .face-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     width: 100%;
     max-width: 400px; /* Set a maximum width */
@@ -31,10 +34,14 @@ body {
     height: auto; /* Adjust height automatically */
 }
 
+#left-eye, #right-eye, #nose, #mouth {
+    position: absolute;
+}
+
 #left-eye {
-    top: 20%; /* Move the eyes higher */
-    left: 25%; /* Increase the distance between the eyes */
-    transform: translateX(-50%);
+    top: 30%; /* Adjust as needed */
+    left: 25%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
     animation: shake 5s infinite;
     animation-delay: 0s; /* No delay */
     --shake-offset-x: 0.5px;
@@ -42,19 +49,19 @@ body {
 }
 
 #right-eye {
-    top: 20%; /* Move the eyes higher */
-    left: 75%; /* Increase the distance between the eyes */
-    transform: translateX(-50%);
+    top: 30%; /* Adjust as needed */
+    left: 75%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
     animation: shake 5s infinite;
     animation-delay: 0.1s; /* Slight delay */
-    --shake-offset-x: 0.5px;
-    --shake-offset-y: 0.5px;
+    --shake-offset-x: -0.5px;
+    --shake-offset-y: -0.5px;
 }
 
 #nose {
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 50%; /* Adjust as needed */
+    left: 50%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
     animation: shake 5s infinite;
     animation-delay: 0.2s; /* Slight delay */
     --shake-offset-x: 1px;
@@ -62,11 +69,11 @@ body {
 }
 
 #mouth {
-    top: 75%; /* Move the mouth lower */
-    left: 40%;
+    top: 75%; /* Adjust as needed */
+    left: 50%; /* Adjust as needed */
     width: 40%;
     height: auto;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     animation: shake 5s infinite;
     animation-delay: 0.3s; /* Slight delay */
     --shake-offset-x: -1px;
@@ -74,17 +81,17 @@ body {
 }
 
 @keyframes shake {
-    0% { transform: translate(calc(0.5px + var(--shake-offset-x)), calc(0.5px + var(--shake-offset-y))) rotate(0deg); }
-    10% { transform: translate(calc(-0.5px + var(--shake-offset-x)), calc(-1px + var(--shake-offset-y))) rotate(-1deg); }
-    20% { transform: translate(calc(-1.5px + var(--shake-offset-x)), calc(0px + var(--shake-offset-y))) rotate(1deg); }
-    30% { transform: translate(calc(1.5px + var(--shake-offset-x)), calc(1px + var(--shake-offset-y))) rotate(0deg); }
-    40% { transform: translate(calc(0.5px + var(--shake-offset-x)), calc(-0.5px + var(--shake-offset-y))) rotate(1deg); }
-    50% { transform: translate(calc(-0.5px + var(--shake-offset-x)), calc(1px + var(--shake-offset-y))) rotate(-1deg); }
-    60% { transform: translate(calc(-1.5px + var(--shake-offset-x)), calc(0.5px + var(--shake-offset-y))) rotate(0deg); }
-    70% { transform: translate(calc(1.5px + var(--shake-offset-x)), calc(0.5px + var(--shake-offset-y))) rotate(-1deg); }
-    80% { transform: translate(calc(-0.5px + var(--shake-offset-x)), calc(-0.5px + var(--shake-offset-y))) rotate(1deg); }
-    90% { transform: translate(calc(0.5px + var(--shake-offset-x)), calc(1px + var(--shake-offset-y))) rotate(0deg); }
-    100% { transform: translate(calc(0.5px + var(--shake-offset-x)), calc(-1px + var(--shake-offset-y))) rotate(-1deg); }
+    0% { transform: translate(-50%, -50%) translate(calc(0.5px + var(--shake-offset-x)), calc(0.5px + var(--shake-offset-y))) rotate(0deg); }
+    10% { transform: translate(-50%, -50%) translate(calc(-0.5px + var(--shake-offset-x)), calc(-1px + var(--shake-offset-y))) rotate(-1deg); }
+    20% { transform: translate(-50%, -50%) translate(calc(-1.5px + var(--shake-offset-x)), calc(0px + var(--shake-offset-y))) rotate(1deg); }
+    30% { transform: translate(-50%, -50%) translate(calc(1.5px + var(--shake-offset-x)), calc(1px + var(--shake-offset-y))) rotate(0deg); }
+    40% { transform: translate(-50%, -50%) translate(calc(0.5px + var(--shake-offset-x)), calc(-0.5px + var(--shake-offset-y))) rotate(1deg); }
+    50% { transform: translate(-50%, -50%) translate(calc(-0.5px + var(--shake-offset-x)), calc(1px + var(--shake-offset-y))) rotate(-1deg); }
+    60% { transform: translate(-50%, -50%) translate(calc(-1.5px + var(--shake-offset-x)), calc(0.5px + var(--shake-offset-y))) rotate(0deg); }
+    70% { transform: translate(-50%, -50%) translate(calc(1.5px + var(--shake-offset-x)), calc(0.5px + var(--shake-offset-y))) rotate(-1deg); }
+    80% { transform: translate(-50%, -50%) translate(calc(-0.5px + var(--shake-offset-x)), calc(-0.5px + var(--shake-offset-y))) rotate(1deg); }
+    90% { transform: translate(-50%, -50%) translate(calc(0.5px + var(--shake-offset-x)), calc(1px + var(--shake-offset-y))) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) translate(calc(0.5px + var(--shake-offset-x)), calc(-1px + var(--shake-offset-y))) rotate(-1deg); }
 }
 .shake {
     animation: shake 5s infinite; /* Duration and repeat of the shake effect */
@@ -102,23 +109,24 @@ body {
     }
 
     #left-eye, #right-eye {
-        top: 20%;
+        top: 30%;
     }
 
     #left-eye {
-        left: 20%;
+        left: 25%;
     }
 
     #right-eye {
-        right: 20%;
+        left: 75%;
     }
 
     #nose {
-        top: 45%;
+        top: 50%; /* Adjust as needed */
+        left: 50%; /* Centered horizontally */
     }
 
     #mouth {
-        top: 70%;
-        width: 50%;
+        top: 75%; /* Adjust as needed */
+        left: 50%; /* Centered horizontally */
     }
 }

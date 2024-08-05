@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let leftEyeTimer;
     let rightEyeTimer;
+    let hasRotated = false; // Flag to track if rotation has already happened
 
     const resetEyeTimers = () => {
         if (leftEyeTimer) clearTimeout(leftEyeTimer);
@@ -25,7 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const isLeftEyeOpen = leftEye.src.includes('left_eye_open.svg');
         const isRightEyeOpen = rightEye.src.includes('right_eye_open.svg');
 
-        if (isLeftEyeOpen && isRightEyeOpen) {
+        if (isLeftEyeOpen && isRightEyeOpen && !hasRotated) {
+            hasRotated = true; // Set the flag to true after the first rotation
             faceContainer.classList.add('rotate-face');
             setTimeout(() => {
                 if (mouth.src.includes('smiling_mouth.svg')) {
