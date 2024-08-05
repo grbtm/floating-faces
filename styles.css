@@ -12,25 +12,14 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 100%;
-    max-width: 400px; /* Set a maximum width */
-    height: 400px; /* Set a fixed height for the container */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
     transition: transform 2s ease-in-out;
-}
-
-.face-container.rotate-face {
-    animation: rotate-animation 1.5s ease-in-out;
-}
-
-@keyframes rotate-animation {
-    0% { transform: rotate(0deg); }
-    50% { transform: rotate(-180deg); } /* Rotate 180 degrees counterclockwise */
-    100% { transform: rotate(0deg); } /* Back to original position */
 }
 
 .face-container img {
     position: absolute;
-    width: 20%; /* Make the images responsive */
+    width: 7%; /* Make the images responsive */
     height: auto; /* Adjust height automatically */
 }
 
@@ -39,8 +28,8 @@ body {
 }
 
 #left-eye {
-    top: 30%; /* Adjust as needed */
-    left: 25%; /* Adjust as needed */
+    top: 30%;
+    left: 35%; 
     transform: translate(-50%, -50%);
     animation: shake 5s infinite;
     animation-delay: 0s; /* No delay */
@@ -49,8 +38,8 @@ body {
 }
 
 #right-eye {
-    top: 30%; /* Adjust as needed */
-    left: 75%; /* Adjust as needed */
+    top: 30%; 
+    left: 65%; 
     transform: translate(-50%, -50%);
     animation: shake 5s infinite;
     animation-delay: 0.1s; /* Slight delay */
@@ -59,8 +48,8 @@ body {
 }
 
 #nose {
-    top: 50%; /* Adjust as needed */
-    left: 50%; /* Adjust as needed */
+    top: 50%; 
+    left: 50%; 
     transform: translate(-50%, -50%);
     animation: shake 5s infinite;
     animation-delay: 0.2s; /* Slight delay */
@@ -69,10 +58,8 @@ body {
 }
 
 #mouth {
-    top: 75%; /* Adjust as needed */
-    left: 50%; /* Adjust as needed */
-    width: 40%;
-    height: auto;
+    top: 75%; 
+    left: 50%; 
     transform: translate(-50%, -50%);
     animation: shake 5s infinite;
     animation-delay: 0.3s; /* Slight delay */
@@ -97,11 +84,12 @@ body {
     animation: shake 5s infinite; /* Duration and repeat of the shake effect */
 }
 
+
 /* Media query for smaller screens */
 @media (max-width: 600px) {
     .face-container {
         max-width: 300px; /* Adjust max-width for smaller screens */
-        height: 300px; /* Adjust height for smaller screens */
+        height: 400px; /* Adjust height for smaller screens */
     }
 
     .face-container img {
@@ -121,12 +109,12 @@ body {
     }
 
     #nose {
-        top: 50%; /* Adjust as needed */
+        top: 50%;
         left: 50%; /* Centered horizontally */
     }
 
     #mouth {
-        top: 75%; /* Adjust as needed */
+        top: 75%;
         left: 50%; /* Centered horizontally */
     }
 }
