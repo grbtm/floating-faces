@@ -3,11 +3,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const rightEye = document.getElementById('right-eye');
     const mouth = document.getElementById('mouth');
     const nose = document.getElementById('nose');
+    const facialElements = [leftEye, rightEye, mouth, nose];
     const faceContainer = document.querySelector('.face-container');
 
     let leftEyeTimer;
     let rightEyeTimer;
     let hasRotated = false; // Flag to track if rotation has already happened
+
+    // Add drag and drop functionality to facial elements
+    facialElements.forEach(element => {
+        element.addEventListener('dragstart', dragStart);
+        element.addEventListener('dragend', dragEnd);
+    });
+
+    function dragStart(event) {
+        event.dataTransfer.setData('text/plain', event.target.id);
+        setTimeout(() => {
+            event.target.style.visibility = 'hidden';
+        }, 0);
+    }
+
+    function dragEnd(event) {
+        event.target.style.visibility = 'visible';
+    }
+
+    document.querySelector('.face-container').addEventListener('dragover', dragOver);
+    document.querySelector('.face-container').addEventListener('drop', drop);
+
+    function dragOver(event) {
+        event.preventDefault();
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        const id = event.dataTransfer.getData('text/plain');
+        const draggableElement = document.getElementById(id);
+        const dropzone = event.target;
+
+        const rect = dropzone.getBoundingClientRect();
+        const offsetX = event.clientX - rect.left;
+        const offsetY = event.clientY - rect.top;
+
+        draggableElement.style.left = `${offsetX}px`;
+        draggableElement.style.top = `${offsetY}px`;
+        draggableElement.style.transform = 'translate(-50%, -50%)';
+    }
 
     const resetEyeTimers = () => {
         if (leftEyeTimer) clearTimeout(leftEyeTimer);
@@ -82,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Apply shake effect to all facial elements
-    const facialElements = [leftEye, rightEye, mouth, nose];
     facialElements.forEach(element => {
         element.classList.add('shake');
     });
