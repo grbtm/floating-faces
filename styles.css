@@ -23,18 +23,36 @@ body {
     height: auto; /* Adjust height automatically */
 }
 
-#left-eye, #right-eye, #nose, #mouth {
+#left-eye-container, #left-eye, #left-eye-pupil, #right-eye, #nose, #mouth {
     position: absolute;
 }
 
-#left-eye {
+#left-eye-container {
+    display: flex; /* Use flexbox to center content */
+    justify-content: center;
+    align-items: center;
+    position: absolute;
     top: 30%;
-    left: 35%; 
+    left: 35%;
     transform: translate(-50%, -50%);
+    width: 7%; /* Match the width of .face-container img */
+    height: auto; /* Adjust height automatically */
     animation: shake 5s infinite;
     animation-delay: 0s; /* No delay */
     --shake-offset-x: 0.5px;
     --shake-offset-y: 0.5px;
+}
+
+#left-eye {
+    display: block;
+    width: 100%; /* Make the eye fill the container */
+    height: auto;
+}
+
+#left-eye-pupil {
+    width: 30%;
+    height: auto; /* Adjust height automatically */
+    pointer-events: none; /* Prevent the pupil from interfering with drag events */
 }
 
 #right-eye {
