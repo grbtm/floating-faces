@@ -80,6 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
     //////////////////////////////////////////////////////////
     // Click event listeners for facial elements
     //////////////////////////////////////////////////////////
+    
+    // Left eye
     leftEyeContainer.addEventListener('click', () => {
         if (leftEye.src.includes('closed_eye.svg')) {
             leftEye.src = 'static/left_eye_no_pupil.svg';
@@ -91,17 +93,60 @@ document.addEventListener('DOMContentLoaded', () => {
         startInactivityTimer(); // Restart inactivity timer on eye click
     });
 
+    // Right eye
+    const rightEyeSources = [
+        'static/closed_eye.svg',
+        'static/right_eye_open.svg',
+        'static/right_eye_squinted.svg',
+    ];
+    
+    let currentRightEyeIndex = 0;
+    
     rightEye.addEventListener('click', () => {
-        rightEye.src = rightEye.src.includes('closed_eye.svg') ? 'static/right_eye_open.svg' : 'static/closed_eye.svg';
+        currentRightEyeIndex = (currentRightEyeIndex + 1) % rightEyeSources.length;
+        rightEye.src = rightEyeSources[currentRightEyeIndex];
         startInactivityTimer(); // Restart inactivity timer on eye click
     });
 
+    // Mouth
     mouth.addEventListener('click', () => {
         mouth.src = mouth.src.includes('smiling_mouth.svg') ? 'static/smiling_mouth_tongue_out.svg' : 'static/smiling_mouth.svg';
     });
 
+    // Nose
+    const noseSources = [
+        'static/nose.svg',
+        'static/nose_alternate.svg',
+        'static/nose_long.svg',
+        'static/nose_pointy.svg',
+        'static/nose_holes.svg',
+    ];
+    
+    let currentNoseIndex = 0;
+
     nose.addEventListener('click', () => {
-        nose.src = nose.src.includes('nose.svg') ? 'static/nose_alternate.svg' : 'static/nose.svg';
+        const originalLeftEyeSrc = leftEye.src;
+        const originalLeftEyePupil = leftEyePupil.style.display;
+        const originalRightEyeSrc = rightEye.src;
+        const originalMouthSrc = mouth.src;
+
+        leftEye.src = 'static/left_eye_squinted.svg';
+        leftEyePupil.style.display = 'none'; // Hide pupil when eye is squinted
+        rightEye.src = 'static/right_eye_squinted.svg';
+        mouth.src = 'static/smiling_mouth_tongue_out.svg';
+
+        setTimeout(() => {
+            leftEye.src = originalLeftEyeSrc;
+            rightEye.src = originalRightEyeSrc;
+            leftEyePupil.style.display = originalLeftEyePupil;
+            mouth.src = originalMouthSrc;
+        }, 1000);
+        
+        // Increment the index and wrap around if necessary
+        currentNoseIndex = (currentNoseIndex + 1) % noseSources.length;
+        
+        // Update the nose.src to the next source file
+        nose.src = noseSources[currentNoseIndex];
     });
 
     //////////////////////////////////////////////////////////
