@@ -110,29 +110,7 @@ body {
         height: 400px; /* Adjust height for smaller screens */
     }
 
-    .face-container img {
-        width: 30%; /* Adjust image size for smaller screens */
-    }
-
-    #left-eye, #right-eye {
-        top: 30%;
-    }
-
-    #left-eye {
-        left: 25%;
-    }
-
-    #right-eye {
-        left: 75%;
-    }
-
-    #nose {
-        top: 50%;
-        left: 50%; /* Centered horizontally */
-    }
-
-    #mouth {
-        top: 75%;
-        left: 50%; /* Centered horizontally */
+    .face-container img, #left-eye-container {
+        width: 25%; /* Adjust image size for smaller screens */
     }
 }
