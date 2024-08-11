@@ -12,47 +12,40 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add drag and drop functionality to facial elements
     //////////////////////////////////////////////////////////
     facialElements.forEach(element => {
-        element.addEventListener('dragstart', dragStart);
-        element.addEventListener('dragend', dragEnd);
+        element.addEventListener('mousedown', dragStart);
     });
 
     function dragStart(event) {
-        const targetElement = event.target.closest('[draggable="true"]');
-        event.dataTransfer.setData('text/plain', targetElement.id);
-        setTimeout(() => {
-            targetElement.style.visibility = 'hidden'; // event.target
-        }, 0);
-    }
-
-    function dragEnd(event) {
-        const targetElement = event.target.closest('[draggable="true"]');
-        targetElement.style.visibility = 'visible'; // event.target
-    }
-
-    document.querySelector('.face-container').addEventListener('dragover', dragOver);
-    document.querySelector('.face-container').addEventListener('drop', drop);
-
-    function dragOver(event) {
         event.preventDefault();
-    }
+        // Traverse DOM tree to find the closest parent element with the class 'face-container'
+        // -> ensures that when left-eye is clicked, the parent 'left-eye-container' is returned
+        const element = event.target.closest('.face-container > *');
+        const rect = element.getBoundingClientRect();
+        // Calculate offset from the center of the element
+        const offsetX = event.clientX - (rect.left + rect.width / 2);
+        const offsetY = event.clientY - (rect.top + rect.height / 2);
 
-    function drop(event) {
-        event.preventDefault();
-        const id = event.dataTransfer.getData('text/plain');
-        const draggableElement = document.getElementById(id);
-        
-        const dropzone = event.target.closest('.face-container'); // Ensure dropzone is the face-container
+        function onMouseMove(event) {
+            const faceContainerRect = document.querySelector('.face-container').getBoundingClientRect();
+            let newLeft = event.clientX - faceContainerRect.left - offsetX;
+            let newTop = event.clientY - faceContainerRect.top - offsetY;
 
-        dropzone.appendChild(draggableElement);
-        draggableElement.style.visibility = 'visible';
+            // Ensure the element stays within the face-container
+            newLeft = Math.max(0, Math.min(newLeft, faceContainerRect.width - rect.width));
+            newTop = Math.max(0, Math.min(newTop, faceContainerRect.height - rect.height));
 
-        const rect = dropzone.getBoundingClientRect();
-        const offsetX = event.clientX - rect.left;
-        const offsetY = event.clientY - rect.top;
+            element.style.left = `${newLeft}px`;
+            element.style.top = `${newTop}px`;
+            element.style.transform = 'translate(0, 0)'; // Remove the translate to avoid double translation
+        }
 
-        draggableElement.style.left = `${offsetX}px`;
-        draggableElement.style.top = `${offsetY}px`;
-        draggableElement.style.transform = 'translate(-50%, -50%)';
+        function onMouseUp() {
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
     }
 
     //////////////////////////////////////////////////////////
