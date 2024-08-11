@@ -23,6 +23,14 @@ body {
     height: auto; /* Adjust height automatically */
 }
 
+.face-container img, #left-eye-container {
+    cursor: move; /* Change cursor to move */
+}
+
+.face-container img:active, #left-eye-container:active {
+    cursor: grabbing; /* Change cursor to grabbing when active */
+}
+
 #left-eye-container, #left-eye, #left-eye-pupil, #right-eye, #nose, #mouth {
     position: absolute;
 }
